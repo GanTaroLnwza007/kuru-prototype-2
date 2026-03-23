@@ -12,6 +12,10 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['Inter', 'Noto Sans Thai', 'sans-serif'],
+      display: ['Inter', 'Noto Sans Thai', 'sans-serif'],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
