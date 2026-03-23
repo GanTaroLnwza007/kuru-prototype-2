@@ -8,6 +8,8 @@ import Navbar from "@/components/Navbar";
 import LandingPage from "./pages/LandingPage";
 import DiscoveryPage from "./pages/DiscoveryPage";
 import ResultsPage from "./pages/ResultsPage";
+import ExplorePage from "./pages/ExplorePage";
+import ChatPage from "./pages/ChatPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
             <Route path="/" element={<LandingPage />} />
             <Route path="/discover" element={<DiscoveryPage />} />
             <Route path="/results" element={<ResultsPage />} />
+            <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
