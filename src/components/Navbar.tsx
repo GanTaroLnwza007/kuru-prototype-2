@@ -21,6 +21,8 @@ const Navbar = () => {
             { path: '/', label: t.nav.home },
             { path: '/discover', label: t.nav.discover },
             { path: '/results', label: t.nav.results },
+            { path: '/explore', label: t.nav.explore },
+            { path: '/chat', label: t.nav.chat },
           ].map(({ path, label }) => (
             <Button
               key={path}
