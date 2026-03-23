@@ -8,6 +8,8 @@ import Navbar from "@/components/Navbar";
 import LandingPage from "./pages/LandingPage";
 import DiscoveryPage from "./pages/DiscoveryPage";
 import ResultsPage from "./pages/ResultsPage";
+import ExplorePage from "./pages/ExplorePage";
+import ChatPage from "./pages/ChatPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
