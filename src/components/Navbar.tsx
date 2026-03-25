@@ -22,6 +22,7 @@ const Navbar = () => {
             { path: '/discover', label: t.nav.discover },
             { path: '/results', label: t.nav.results },
             { path: '/explore', label: t.nav.explore },
+            { path: '/portfolio', label: t.nav.portfolio },
             { path: '/chat', label: t.nav.chat },
           ].map(({ path, label }) => (
             <Button
