@@ -103,6 +103,9 @@
   .gradient-hero {
     background: var(--gradient-hero);
   }
+  .gradient-hero-bg {
+    background: var(--gradient-hero-bg);
+  }
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
