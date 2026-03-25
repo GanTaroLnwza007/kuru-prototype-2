@@ -10,6 +10,7 @@ import DiscoveryPage from "./pages/DiscoveryPage";
 import ResultsPage from "./pages/ResultsPage";
 import ExplorePage from "./pages/ExplorePage";
 import ChatPage from "./pages/ChatPage";
+import PortfolioCoachPage from "./pages/PortfolioCoachPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
