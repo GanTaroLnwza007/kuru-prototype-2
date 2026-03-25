@@ -49,10 +49,11 @@
     --sidebar-ring: 120 100% 20%;
 
     /* Custom tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(120 100% 20%), hsl(120 70% 30%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 64% 29%), hsl(160 50% 40%));
+    --gradient-hero-bg: linear-gradient(160deg, hsl(142 40% 96%), hsl(170 40% 96%), hsl(0 0% 100%));
     --gradient-card: linear-gradient(180deg, hsl(120 20% 97%), hsl(0 0% 100%));
-    --shadow-card: 0 4px 24px -4px hsl(120 20% 20% / 0.08);
-    --shadow-card-hover: 0 8px 32px -4px hsl(120 20% 20% / 0.15);
+    --shadow-card: 0 4px 24px -4px hsl(142 30% 20% / 0.08);
+    --shadow-card-hover: 0 8px 32px -4px hsl(142 30% 20% / 0.15);
   }
 
   .dark {
