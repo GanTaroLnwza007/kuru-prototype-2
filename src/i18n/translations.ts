@@ -165,6 +165,7 @@ const translations = {
       results: 'Results',
       explore: 'Explore Programs',
       chat: 'Chat with KUru',
+      portfolio: 'Portfolio Coach',
       lang: 'TH',
     },
     discovery: {
