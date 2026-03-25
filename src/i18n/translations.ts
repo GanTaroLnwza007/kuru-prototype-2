@@ -16,6 +16,7 @@ const translations = {
       results: 'ผลลัพธ์',
       explore: 'สำรวจหลักสูตร',
       chat: 'แชทกับ KUru',
+      portfolio: 'Portfolio Coach',
       lang: 'EN',
     },
     discovery: {
