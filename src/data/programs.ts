@@ -6,6 +6,14 @@ export interface ProgramTCAS {
   seats: number;
 }
 
+export interface YearVibe {
+  year: number;
+  title: { th: string; en: string };
+  description: { th: string; en: string };
+  skills: { th: string[]; en: string[] };
+  workload: 'light' | 'moderate' | 'heavy' | 'intense';
+}
+
 export interface Program {
   id: string;
   name: { th: string; en: string };
@@ -18,6 +26,9 @@ export interface Program {
   recruiters: string[];
   tcas: ProgramTCAS[];
   ploFitScore: number;
+  hasPortfolioCoach: boolean;
+  yearByYear: YearVibe[];
+  ploData: number[]; // 6 axes: [critical thinking, technical, communication, teamwork, ethics, innovation]
 }
 
 export const programs: Program[] = [
