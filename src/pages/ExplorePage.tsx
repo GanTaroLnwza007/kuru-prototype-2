@@ -3,17 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search, Filter, MessageCircle, Heart, Sparkles, X,
-  Building2, Briefcase, GraduationCap, ChevronDown, ChevronUp, GitCompare
+  GitCompare
 } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { programs, faculties, type Program } from '@/data/programs';
+import { programs, faculties } from '@/data/programs';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
-import ProgramDetailDialog from '@/components/explore/ProgramDetailDialog';
 
 const formatSalary = (n: number) => `฿${n.toLocaleString()}`;
 
@@ -26,7 +25,6 @@ const ExplorePage = () => {
   const [facultyFilter, setFacultyFilter] = useState('all');
   const [salaryFilter, setSalaryFilter] = useState<SalaryFilter>('all');
   const [pinnedIds, setPinnedIds] = useState<string[]>([]);
-  const [detailProgram, setDetailProgram] = useState<Program | null>(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +36,14 @@ const ExplorePage = () => {
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, []);
+
+  // Scroll position preservation
+  useEffect(() => {
+    const saved = sessionStorage.getItem('explore_scroll');
+    if (saved) { window.scrollTo(0, parseInt(saved, 10)); sessionStorage.removeItem('explore_scroll'); }
+  }, []);
+  const saveScroll = () => sessionStorage.setItem('explore_scroll', String(window.scrollY));
+  const navigateToProgram = (id: string) => { saveScroll(); navigate(`/programs/${id}`); };
 
   const togglePin = (id: string) => {
     setPinnedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
@@ -84,7 +90,7 @@ const ExplorePage = () => {
                   <motion.div key={p.id} layout initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }}>
                     <Badge
                       className="bg-primary/10 text-primary border-primary/20 px-3 py-1.5 cursor-pointer hover:bg-primary/20 transition-colors whitespace-nowrap gap-1.5"
-                      onClick={() => setDetailProgram(p)}
+                      onClick={() => navigateToProgram(p.id)}
                     >
                       <span className="text-base">{p.facultyIcon}</span>
                       <span className="text-xs font-medium">{p.name[lang]}</span>
@@ -146,7 +152,7 @@ const ExplorePage = () => {
                   {suggestions.map(s => (
                     <button
                       key={s.id}
-                      onClick={() => { setDetailProgram(s); setShowSuggestions(false); }}
+                      onClick={() => { navigateToProgram(s.id); setShowSuggestions(false); }}
                       className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/50 transition-colors text-left"
                     >
                       <span className="text-xl">{s.facultyIcon}</span>
@@ -204,7 +210,7 @@ const ExplorePage = () => {
                 index={i}
                 isPinned={pinnedIds.includes(p.id)}
                 onTogglePin={togglePin}
-                onClick={() => setDetailProgram(p)}
+                onClick={() => navigateToProgram(p.id)}
                 onChat={() => navigate(`/chat?program=${p.id}`)}
               />
             ))}
@@ -212,16 +218,6 @@ const ExplorePage = () => {
         </div>
       </div>
 
-      {/* Detail Dialog */}
-      <ProgramDetailDialog
-        program={detailProgram}
-        open={!!detailProgram}
-        onClose={() => setDetailProgram(null)}
-        isPinned={detailProgram ? pinnedIds.includes(detailProgram.id) : false}
-        onTogglePin={togglePin}
-        lang={lang}
-        t={t}
-      />
     </div>
   );
 };

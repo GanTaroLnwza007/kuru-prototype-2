@@ -11,6 +11,7 @@ import ResultsPage from "./pages/ResultsPage";
 import ExplorePage from "./pages/ExplorePage";
 import ChatPage from "./pages/ChatPage";
 import PortfolioCoachPage from "./pages/PortfolioCoachPage";
+import ProgramDetailPage from "./pages/ProgramDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/portfolio" element={<PortfolioCoachPage />} />
+            <Route path="/programs/:programId" element={<ProgramDetailPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

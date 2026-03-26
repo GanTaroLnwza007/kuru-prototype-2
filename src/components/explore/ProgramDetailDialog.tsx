@@ -17,6 +17,18 @@ const workloadLabel: Record<string, { th: string; en: string }> = {
   heavy: { th: 'หนักพอตัว', en: 'Heavy' },
   intense: { th: 'เข้มข้นมาก', en: 'Intense' },
 };
+const workloadColor: Record<string, string> = {
+  light: 'bg-green-400',
+  moderate: 'bg-yellow-400',
+  heavy: 'bg-orange-400',
+  intense: 'bg-red-500',
+};
+const workloadRing: Record<string, string> = {
+  light: 'ring-green-400',
+  moderate: 'ring-yellow-400',
+  heavy: 'ring-orange-400',
+  intense: 'ring-red-500',
+};
 
 const ploLabels = {
   th: ['คิดวิเคราะห์', 'เทคนิค', 'สื่อสาร', 'ทีมเวิร์ค', 'จริยธรรม', 'นวัตกรรม'],
@@ -113,32 +125,43 @@ const ProgramDetailDialog = ({ program: p, open, onClose, isPinned, onTogglePin,
             </div>
           </div>
 
-          {/* Year-by-Year Vibe */}
+          {/* Year-by-Year Roadmap */}
           <div>
-            <h3 className="font-display font-bold text-foreground text-lg mb-3 flex items-center gap-2">
+            <h3 className="font-display font-bold text-foreground text-lg mb-4 flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-primary" />
               {lang === 'th' ? 'ชีวิตแต่ละปีเป็นยังไง?' : 'Year-by-Year Vibe'}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {p.yearByYear.map(y => (
-                <motion.div
-                  key={y.year}
-                  whileHover={{ scale: 1.03 }}
-                  className="bg-card border border-border rounded-xl p-3 shadow-card hover:shadow-card-hover transition-shadow"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold text-primary text-sm">{y.title[lang]}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground mb-2 leading-relaxed">{y.description[lang]}</p>
-                  <div className="flex items-center gap-1 mb-2">
-                    <span className="text-lg">{workloadEmoji[y.workload]}</span>
-                    <span className="text-xs text-muted-foreground">{workloadLabel[y.workload][lang]}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {y.skills[lang].map(s => <Badge key={s} variant="secondary" className="text-[10px] px-1.5 py-0.5">{s}</Badge>)}
-                  </div>
-                </motion.div>
-              ))}
+            <div className="relative pl-8">
+              {/* Vertical track line */}
+              <div className="absolute left-3.5 top-2 bottom-2 w-0.5 bg-border rounded-full" />
+              <div className="space-y-0">
+                {p.yearByYear.map((y, i) => (
+                  <motion.div
+                    key={y.year}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                    className="relative"
+                  >
+                    {/* Node dot */}
+                    <div className={`absolute -left-[18px] top-4 w-4 h-4 rounded-full ring-2 ring-offset-2 ring-offset-background ${workloadColor[y.workload]} ${workloadRing[y.workload]}`} />
+
+                    <div className="bg-card border border-border rounded-xl p-4 mb-3 shadow-card hover:shadow-card-hover transition-shadow">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="font-bold text-primary text-sm">{y.title[lang]}</span>
+                        <div className="flex items-center gap-1">
+                          <span className="text-base">{workloadEmoji[y.workload]}</span>
+                          <span className="text-xs text-muted-foreground">{workloadLabel[y.workload][lang]}</span>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground mb-2.5 leading-relaxed">{y.description[lang]}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {y.skills[lang].map(s => <Badge key={s} variant="secondary" className="text-[10px] px-1.5 py-0.5">{s}</Badge>)}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
 
