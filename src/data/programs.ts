@@ -29,6 +29,8 @@ export interface Program {
   hasPortfolioCoach: boolean;
   yearByYear: YearVibe[];
   ploData: number[];
+  /** RIASEC affinity weights [R, I, A, S, E, C], values 0–1 */
+  riasecWeights: number[];
 }
 
 const defaultYearByYear = (faculty: string): YearVibe[] => [
@@ -77,6 +79,7 @@ export const programs: Program[] = [
     ploFitScore: 95, hasPortfolioCoach: true,
     yearByYear: defaultYearByYear('eng'),
     ploData: [90, 95, 70, 85, 75, 92],
+    riasecWeights: [0.5, 0.9, 0.2, 0.2, 0.3, 0.8], // R, I, A, S, E, C
   },
   {
     id: 'agri',
@@ -96,6 +99,7 @@ export const programs: Program[] = [
     ploFitScore: 88, hasPortfolioCoach: true,
     yearByYear: defaultYearByYear('agri'),
     ploData: [80, 75, 65, 85, 90, 70],
+    riasecWeights: [0.9, 0.7, 0.3, 0.6, 0.3, 0.5], // R, I, A, S, E, C
   },
   {
     id: 'bba',
@@ -115,6 +119,7 @@ export const programs: Program[] = [
     ploFitScore: 82, hasPortfolioCoach: true,
     yearByYear: defaultYearByYear('bba'),
     ploData: [75, 60, 90, 88, 80, 85],
+    riasecWeights: [0.2, 0.5, 0.4, 0.7, 0.9, 0.8], // R, I, A, S, E, C
   },
   {
     id: 'env-sci',
@@ -134,6 +139,7 @@ export const programs: Program[] = [
     ploFitScore: 78, hasPortfolioCoach: false,
     yearByYear: defaultYearByYear('env'),
     ploData: [85, 70, 75, 80, 92, 78],
+    riasecWeights: [0.7, 0.8, 0.3, 0.7, 0.3, 0.5], // R, I, A, S, E, C
   },
   {
     id: 'econ',
@@ -153,6 +159,7 @@ export const programs: Program[] = [
     ploFitScore: 85, hasPortfolioCoach: true,
     yearByYear: defaultYearByYear('econ'),
     ploData: [92, 80, 78, 70, 85, 75],
+    riasecWeights: [0.2, 0.8, 0.2, 0.4, 0.6, 0.9], // R, I, A, S, E, C
   },
   {
     id: 'food-sci',
@@ -172,6 +179,7 @@ export const programs: Program[] = [
     ploFitScore: 76, hasPortfolioCoach: false,
     yearByYear: defaultYearByYear('food'),
     ploData: [78, 88, 72, 82, 86, 80],
+    riasecWeights: [0.7, 0.8, 0.4, 0.5, 0.3, 0.7], // R, I, A, S, E, C
   },
 ];
 
